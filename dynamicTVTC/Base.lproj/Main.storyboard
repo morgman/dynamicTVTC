@@ -91,9 +91,15 @@
                                         <constraint firstAttribute="trailing" secondItem="4xh-ao-NMe" secondAttribute="trailing" constant="8" id="Ahe-n4-VZy"/>
                                         <constraint firstItem="4xh-ao-NMe" firstAttribute="centerY" secondItem="IAQ-NG-DSf" secondAttribute="centerY" constant="-2" id="RVF-Ex-yHF"/>
                                         <constraint firstItem="4xh-ao-NMe" firstAttribute="top" secondItem="0YU-Tf-pBs" secondAttribute="topMargin" constant="2" id="U4y-FH-9pl"/>
+                                        <constraint firstItem="IAQ-NG-DSf" firstAttribute="centerY" secondItem="4xh-ao-NMe" secondAttribute="centerY" constant="2" id="WHg-qp-ptn"/>
                                         <constraint firstItem="IAQ-NG-DSf" firstAttribute="leading" secondItem="0YU-Tf-pBs" secondAttribute="leadingMargin" constant="5" id="clR-JV-Viw"/>
                                         <constraint firstAttribute="bottom" secondItem="4xh-ao-NMe" secondAttribute="bottom" constant="11" id="jrO-u8-7LR"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="RVF-Ex-yHF"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="textView" destination="4xh-ao-NMe" id="miZ-th-UlR"/>
