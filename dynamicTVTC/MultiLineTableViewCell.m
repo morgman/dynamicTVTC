@@ -9,6 +9,7 @@
 #import "MultiLineTableViewCell.h"
 
 @implementation MultiLineTableViewCell
+@synthesize textView;
 
 - (void)awakeFromNib {
     // Initialization code
@@ -19,5 +20,4 @@
 
     // Configure the view for the selected state
 }
-
 @end

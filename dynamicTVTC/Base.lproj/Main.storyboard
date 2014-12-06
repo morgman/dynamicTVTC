@@ -78,7 +78,10 @@
                                         </imageView>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4xh-ao-NMe">
                                             <rect key="frame" x="45" y="10" width="322" height="28"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" red="1" green="0.9177574195" blue="0.4158209705" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="322" id="Qqw-Zu-P5R"/>
+                                            </constraints>
                                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -86,9 +89,8 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="4xh-ao-NMe" secondAttribute="trailing" constant="8" id="Ahe-n4-VZy"/>
-                                        <constraint firstItem="4xh-ao-NMe" firstAttribute="leading" secondItem="0YU-Tf-pBs" secondAttribute="leading" constant="45" id="Dk9-QP-qL1"/>
-                                        <constraint firstItem="4xh-ao-NMe" firstAttribute="top" secondItem="0YU-Tf-pBs" secondAttribute="top" constant="10" id="Dls-kD-dBE"/>
-                                        <constraint firstItem="IAQ-NG-DSf" firstAttribute="top" secondItem="0YU-Tf-pBs" secondAttribute="topMargin" constant="6" id="Fkc-9N-d9c"/>
+                                        <constraint firstItem="4xh-ao-NMe" firstAttribute="centerY" secondItem="IAQ-NG-DSf" secondAttribute="centerY" constant="-2" id="RVF-Ex-yHF"/>
+                                        <constraint firstItem="4xh-ao-NMe" firstAttribute="top" secondItem="0YU-Tf-pBs" secondAttribute="topMargin" constant="2" id="U4y-FH-9pl"/>
                                         <constraint firstItem="IAQ-NG-DSf" firstAttribute="leading" secondItem="0YU-Tf-pBs" secondAttribute="leadingMargin" constant="5" id="clR-JV-Viw"/>
                                         <constraint firstAttribute="bottom" secondItem="4xh-ao-NMe" secondAttribute="bottom" constant="11" id="jrO-u8-7LR"/>
                                     </constraints>

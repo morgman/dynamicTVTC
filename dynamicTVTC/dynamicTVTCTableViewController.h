@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface dynamicTVTCTableViewController : UITableViewController
+@interface dynamicTVTCTableViewController : UITableViewController <UITextViewDelegate>
 
 @end

@@ -10,7 +10,9 @@
 #import "SingleLineTableViewCell.h"
 #import "MultiLineTableViewCell.h"
 
-@interface dynamicTVTCTableViewController ()
+@interface dynamicTVTCTableViewController () {
+    NSString *cellText;
+}
 
 @end
 
@@ -29,6 +31,9 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    
+    self.tableView.estimatedRowHeight = UITableViewAutomaticDimension;
+    self.tableView.allowsSelection = NO;
 }
 
 #pragma mark - Table view data source
@@ -42,7 +47,6 @@
     // Return the number of rows in the section.
     return 5;
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -61,56 +65,49 @@
         [[aCell textLabel] setText:labelString];
     } else {
         MultiLineTableViewCell *aCell = (MultiLineTableViewCell *) cell;
-        [[aCell textView] setText:@"Type something here."];
+        if ([cellText length] == 0) {
+            [[aCell textView] setText:@"Type something here."];
+        } else {
+            [[aCell textView] setText:cellText];
+        }
+        [[aCell textView] setDelegate:self];
     }
-    
     
     return cell;
 }
 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row != 4) {
+        return 50.0;
+    } else {
+        
+        static MultiLineTableViewCell *sizingCell;
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            sizingCell = (MultiLineTableViewCell*)[tableView dequeueReusableCellWithIdentifier: @"multiLineCell"];
+        });
+        
+        // configure the cell
+        sizingCell.textView.text = self->cellText;
+        
+        // force layout
+        [sizingCell setNeedsLayout];
+        [sizingCell layoutIfNeeded];
+        // get the fitting size
+        CGSize s = [sizingCell.contentView systemLayoutSizeFittingSize: UILayoutFittingCompressedSize];
+        
+        return s.height+1; // <-- This "+1" seemed to be the issue?!?!?!
+    }
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+#pragma mark - UITextView Delegate
+
+- (void) textViewDidChange:(UITextView *)textView {
+    
+    cellText = [textView text];
+    
+    [self.tableView beginUpdates]; // This will cause an animated update of
+    [self.tableView endUpdates];   // the height of your UITableViewCell
 }
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end
